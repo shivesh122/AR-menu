@@ -183,20 +183,21 @@
             }
         };
 
-        function viewInAR(foodKey) {
-            const model = document.querySelector('#foodModel');
-            const descBox = document.querySelector('#descBox');
-            const arContainer = document.querySelector('#arContainer');
-            const menuContainer = document.querySelector('#menuContainer');
+    function viewInAR(foodKey) {
+    const model = document.querySelector('#foodModel');
+    const descBox = document.querySelector('#descBox');
+    const arContainer = document.querySelector('#arContainer');
+    const menuContainer = document.querySelector('#menuContainer');
 
-            if (foodMap[foodKey]) {
-                model.setAttribute('src', foodMap[foodKey].model);
-                descBox.innerHTML = <h4>${foodMap[foodKey].title}</h4><p>${foodMap[foodKey].description}</p>;
+    if (foodMap[foodKey]) {
+        // Use placeholder Astronaut model for testing
+        model.setAttribute('src', 'https://modelviewer.dev/shared-assets/models/Astronaut.glb');
+        descBox.innerHTML = <h4>${foodMap[foodKey].title}</h4><p>${foodMap[foodKey].description}</p>;
 
-                menuContainer.style.display = 'none';
-                arContainer.style.display = 'block';
-            }
-        }
+        menuContainer.style.display = 'none';
+        arContainer.style.display = 'block';
+         }
+       }
 
         function backToMenu() {
             document.querySelector('#menuContainer').style.display = 'block';

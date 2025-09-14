@@ -102,7 +102,7 @@
         };
 
         if (foodMap[food]) {
-            model.setAttribute('src', foodMap[food].model);
+            model.setAttribute('src', foodMap[food].models);
             descBox.innerHTML = <h4>${foodMap[food].title}</h4><p>${foodMap[food].description}</p>;
         } else {
             descBox.innerHTML = '<h4>Invalid Item</h4><p>Please go back and select a valid food from the menu.</p>';

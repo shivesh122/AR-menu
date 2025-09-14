@@ -4,19 +4,18 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>Interactive AR Food Menu</title>
+    <title>AR Food Menu</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 
     <style>
         body {
-            background: #f0f2f5;
+            background: #f8f9fa;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         header {
-            background-color: #343a40;
+            background-color: #007bff;
             color: white;
             padding: 1rem;
             text-align: center;
@@ -24,104 +23,69 @@
             font-weight: bold;
         }
 
-        .model-container {
+        .menu-container {
             display: flex;
+            flex-wrap: wrap;
             justify-content: center;
-            padding: 2rem 0;
+            gap: 2rem;
+            padding: 2rem;
         }
 
-        model-viewer {
-            width: 90%;
-            max-width: 600px;
-            height: 70vh;
+        .card {
+            width: 18rem;
             border-radius: 12px;
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
         }
 
-        .controls {
-            text-align: center;
-            margin-bottom: 2rem;
+        .card img {
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
         }
 
-        .food-description {
-            max-width: 600px;
-            margin: 0 auto;
+        .card-body {
             text-align: center;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 2rem;
             padding: 1rem;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            background-color: #007bff;
+            color: white;
         }
     </style>
 </head>
 
 <body>
     <header>
-        🍔 Interactive AR Food Menu
+        🍔 Welcome to Our AR Food Menu
     </header>
 
-    <div class="model-container">
-        <model-viewer id="foodModel"
-            src="assets/models/pizza.glb"
-            ar
-            ar-modes="webxr scene-viewer quick-look"
-            camera-controls
-            environment-image="neutral"
-            auto-rotate>
-        </model-viewer>
+    <div class="menu-container">
+        <!-- Pizza Card -->
+        <div class="card">
+            <img src="assets/images/pizza.jpg" class="card-img-top" alt="Pizza Image">
+            <div class="card-body">
+                <h5 class="card-title">Pizza Margherita 🍕</h5>
+                <p class="card-text">Classic Italian pizza with tomatoes, mozzarella, and basil.</p>
+                <a href="ar.html?food=pizza" class="btn btn-primary">View in AR</a>
+            </div>
+        </div>
+
+        <!-- Burger Card -->
+        <div class="card">
+            <img src="assets/images/burger.jpg" class="card-img-top" alt="Burger Image">
+            <div class="card-body">
+                <h5 class="card-title">Classic Burger 🍔</h5>
+                <p class="card-text">Juicy beef patty with fresh lettuce, tomato, and melted cheese.</p>
+                <a href="ar.html?food=burger" class="btn btn-primary">View in AR</a>
+            </div>
+        </div>
     </div>
 
-    <div class="controls">
-        <button class="btn btn-secondary mx-2" onclick="showPizza()">Pizza 🍕</button>
-        <button class="btn btn-secondary mx-2" onclick="showBurger()">Burger 🍔</button>
-        <button class="btn btn-primary mx-2" onclick="toggleAutoRotate()">Toggle Auto-Rotate</button>
-        <button class="btn btn-success mx-2" onclick="showDescription()">Show Description</button>
-        <button class="btn btn-warning mx-2" onclick="orderNow()">Order Now</button>
-    </div>
-
-    <div class="food-description" id="descriptionBox" style="display: none;">
-        <h4 id="foodTitle">Pizza Margherita 🍕</h4>
-        <p id="foodText">Classic Italian pizza with fresh tomatoes, mozzarella, and basil. Perfectly baked with a crispy crust and rich flavors.</p>
-    </div>
-
-    <footer class="text-center mt-4 p-3 bg-dark text-white">
+    <footer>
         © 2025 Your Restaurant Name. All rights reserved.
     </footer>
-
-    <script>
-        let autoRotateEnabled = true;
-        const model = document.querySelector('#foodModel');
-        const descBox = document.querySelector('#descriptionBox');
-        const foodTitle = document.querySelector('#foodTitle');
-        const foodText = document.querySelector('#foodText');
-
-        function toggleAutoRotate() {
-            autoRotateEnabled = !autoRotateEnabled;
-            model.setAttribute('auto-rotate', autoRotateEnabled);
-        }
-
-        function showDescription() {
-            descBox.style.display = descBox.style.display === 'none' ? 'block' : 'none';
-        }
-
-        function orderNow() {
-            window.location.href = "https://your-order-system.example.com";
-        }
-
-        function showPizza() {
-            model.setAttribute('src', 'assets/models/pizza.glb');
-            foodTitle.textContent = 'Pizza Margherita 🍕';
-            foodText.textContent = 'Classic Italian pizza with fresh tomatoes, mozzarella, and basil. Perfectly baked with a crispy crust and rich flavors.';
-            descBox.style.display = 'block';
-        }
-
-        function showBurger() {
-            model.setAttribute('src', 'assets/models/burger.glb');
-            foodTitle.textContent = 'Classic Burger 🍔';
-            foodText.textContent = 'Juicy beef patty with fresh lettuce, tomato, and melted cheese in a toasted bun. A classic delight!';
-            descBox.style.display = 'block';
-        }
-    </script>
 </body>
 
 </html>
